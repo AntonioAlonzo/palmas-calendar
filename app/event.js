@@ -1,4 +1,4 @@
-function Event({ data }) {
+function Event({ data, lang }) {
   const eventDate = new Date(data.date);
 
   return (
@@ -9,7 +9,9 @@ function Event({ data }) {
       >
         <div className={"bg-blue-gray rounded-tl-xl w-14 rounded-br-lg pt-3 "}>
           <p className={"uppercase text-white text-sm text-center"}>
-            {eventDate.toLocaleString("default", { month: "short" })}
+            {lang == "es"
+              ? eventDate.toLocaleString("es", { month: "short" })
+              : eventDate.toLocaleString("default", { month: "short" })}
           </p>
           <p className={"text-white font-avenir-black text-3xl  text-center"}>
             {eventDate.getDate()}
@@ -19,7 +21,7 @@ function Event({ data }) {
 
       <div className={"p-5"}>
         <h1 className={"text-white font-avenir-black text-left mb-3"}>
-          {data.title}
+          {lang == "es" ? data.title_es : data.title}
         </h1>
 
         <div className={"bg-blue-gray rounded-full"}>
@@ -41,7 +43,7 @@ function Event({ data }) {
               " text-center block px-6 py-1 mt-4 text-sm text-pale-red bg-white uppercase font-avenir-black text-blue-100 no-underline rounded hover:bg-pale-red  hover:text-white"
             }
           >
-            Register now
+            {lang == "es" ? "Regístrate aquí" : "Register now"}
           </a>
         )}
       </div>

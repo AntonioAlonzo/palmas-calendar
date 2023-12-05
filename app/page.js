@@ -6,6 +6,9 @@ import Event from "./event";
 export default function Home() {
   const [events, setEvents] = useState([]);
 
+  const queryParameters = new URLSearchParams(window.location.search);
+  const lang = queryParameters.get("lang");
+
   useEffect(() => {
     fetch("https://fundacioncostapalmas.com/wp-json/jet-cct/event")
       .then((response) => response.json())
@@ -75,15 +78,15 @@ export default function Home() {
       months[date.getMonth()].events.push(event);
     });
 
-  console.log(months);
-
   return (
     <>
       {months.map((month) => {
         return (
-          <div className="flex flex-wrap  gap-7 mb-4">
+          <div className="flex flex-wrap gap-7 mb-4 pb-10">
             {month.events.map((eventItem) => {
-              return <Event key={eventItem._ID} data={eventItem}></Event>;
+              return (
+                <Event key={eventItem._ID} data={eventItem} lang={lang}></Event>
+              );
             })}
           </div>
         );
