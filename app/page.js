@@ -7,7 +7,7 @@ export default function Home() {
   const [events, setEvents] = useState([]);
 
   let lang = "";
-  if (window !== undefined) {
+  if (typeof window !== undefined) {
     const queryParameters = new URLSearchParams(window.location.search);
     lang = queryParameters.get("lang");
   }
