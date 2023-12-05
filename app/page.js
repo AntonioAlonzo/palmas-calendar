@@ -2,17 +2,13 @@
 
 import { useState, useEffect } from "react";
 import Event from "./event";
-import { useSearchParams } from "react-router-dom";
+import { useSearchParams } from 'next/navigation'
 
 export default function Home() {
   const [events, setEvents] = useState([]);
 
-  const [queryParameters] = useSearchParams();
-
-  let lang = "";
-  if (typeof document !== "undefined") {
-    lang = queryParameters.get("lang");
-  }
+  const searchParams = useSearchParams();
+  const lang = searchParams.get('lang');
 
   useEffect(() => {
     fetch("https://fundacioncostapalmas.com/wp-json/jet-cct/event")
