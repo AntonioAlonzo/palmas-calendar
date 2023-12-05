@@ -6,7 +6,7 @@ import Event from "./event";
 export default function Home() {
   const [events, setEvents] = useState([]);
 
-  const lang = "";
+  let lang = "";
   if (window !== undefined) {
     const queryParameters = new URLSearchParams(window.location.search);
     lang = queryParameters.get("lang");
