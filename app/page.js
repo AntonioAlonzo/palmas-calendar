@@ -6,8 +6,11 @@ import Event from "./event";
 export default function Home() {
   const [events, setEvents] = useState([]);
 
-  const queryParameters = new URLSearchParams(window.location.search);
-  const lang = queryParameters.get("lang");
+  const lang = "";
+  if (window !== undefined) {
+    const queryParameters = new URLSearchParams(window.location.search);
+    lang = queryParameters.get("lang");
+  }
 
   useEffect(() => {
     fetch("https://fundacioncostapalmas.com/wp-json/jet-cct/event")
