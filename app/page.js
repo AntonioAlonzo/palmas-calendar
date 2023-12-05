@@ -9,7 +9,10 @@ export default function Home() {
 
   const [queryParameters] = useSearchParams();
 
-  let lang = queryParameters.get("lang");
+  let lang = "";
+  if (typeof document !== "undefined") {
+    lang = queryParameters.get("lang");
+  }
 
   useEffect(() => {
     fetch("https://fundacioncostapalmas.com/wp-json/jet-cct/event")
