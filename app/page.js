@@ -2,18 +2,14 @@
 
 import { useState, useEffect } from "react";
 import Event from "./event";
+import { useSearchParams } from "react-router-dom";
 
 export default function Home() {
   const [events, setEvents] = useState([]);
 
-  let lang = "";
-  /*
-  let lang = "";
-  if (typeof window !== undefined) {
-    const queryParameters = new URLSearchParams(window.location.search);
-    lang = queryParameters.get("lang");
-  }
-  */
+  const [queryParameters] = useSearchParams();
+
+  let lang = queryParameters.get("lang");
 
   useEffect(() => {
     fetch("https://fundacioncostapalmas.com/wp-json/jet-cct/event")
